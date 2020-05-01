@@ -8,6 +8,7 @@
 <body>
     <h1>Registration!!</h1>
     <form:form modelAttribute="registration">
+        <form:errors path="*" element="div">
         <label><spring:message code="name" /></label>
         <form:input path="name" />
         <input type="submit", value="reg">
