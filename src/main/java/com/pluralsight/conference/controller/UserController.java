@@ -2,6 +2,8 @@ package com.pluralsight.conference.controller;
 
 import com.pluralsight.conference.model.Registration;
 import com.pluralsight.conference.model.User;
+import com.pluralsight.conference.service.Mailer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,8 @@ import javax.validation.Valid;
 
 @RestController
 public class UserController {
+    @Autowired
+    private Mailer mailer;
 
     @GetMapping("/user")
     public User getUser(
@@ -25,6 +29,9 @@ public class UserController {
         user.setFirstname(firstname);
         user.setLastname(lastname);
         user.setAge(23);
+
+        //This will passed immediately
+        mailer.sendMail();
 
         return user;
     }
